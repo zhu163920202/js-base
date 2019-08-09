@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>键盘事件</title>
+    <script type="text/javascript">
+        window.onload = function () {
+            document.onkeydown = function (event) {
+                event = event || window.event;
+                var a = event.keyCode;
+                console.log(a);
+            };
+            // // document.onkeyup = function () {
+            // //     console.log("songkai");
+            // // }
+            // var input = document.getElementsByTagName("input")[0];
+            // input.onkeydown = function (event) {
+            //     event = event || window.event;
+            //     if(event.keyCode>47 && event.keyCode<58){
+            //         return false;
+            //     }
+            //     // console.log("songkai");
+            // }
+        }
+    </script>
+</head>
+<body>
+    <input type="text" class="text">
+</body>
+</html>

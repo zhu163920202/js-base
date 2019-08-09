@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box1 {
+            width: 100px;
+            height: 100px;
+            background-color: #f00;
+            position: absolute;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            // 鼠标拖拽：
+            //     按下时，拖拽开始
+            //     移动
+            //     松开时被拖拽元素被固定在当前位置
+            var box1 = document.getElementById("box1");
+            box1.onmousedown = function () {
+            //    为document绑定一个onmousedown事件
+                document.onmousemove = function (event) {
+                    event = event || window.event;
+                    var left = event.clientX;
+                    var top = event.clientY;
+                    box1.style.left = left + "px";
+                    box1.style.top = top + "px";
+                };
+
+                box1.onmouseup = function () {
+                    document.onmousemove = null;
+                };
+            };
+        }
+    </script>
+</head>
+<body>
+    <div id="box1"></div>
+</body>
+</html>

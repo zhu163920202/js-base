@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件的绑定</title>
+    <script>
+        window.onload = function () {
+            var btn1 = document.getElementById("btn1");
+            //为事件绑定多个响应函数
+            btn1.addEventListener("click",function () {
+                alert("ni");
+            },false);
+
+            btn1.addEventListener("click",function () {
+                alert("hao");
+            },false);
+        }
+    </script>
+</head>
+<body>
+    <button id="btn1">按钮</button>
+</body>
+</html>

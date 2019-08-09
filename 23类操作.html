@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>类操作</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .b1 {
+            width: 100px;
+            height: 100px;
+            background-color: #ff0000;
+        }
+        .b2  {
+            /*width: 200px;*/
+            height: 200px;
+            background-color: #ffff00;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            var btn1 = document.getElementById("btn1");
+            var box1 = document.getElementById("box1");
+            btn1.onclick = function () {
+                addclass(box1,"b2");
+            };
+            function addclass(obj,cn) {
+                if(!hasclass(obj,cn)){
+                    obj.className = obj.className +" "+ cn;
+                }
+            }
+            function hasclass(obj,cn) {
+                var reg = new RegExp("\\b"+ cn + "\\b");
+                return reg.test(obj.className);
+            }
+            // 删除一个类
+            // function removeclass(obj, cn) {
+            //     var reg = new RegExp("\\b"+ cn + "\\b");
+            //     obj.className = obj.className.replace(reg,"");
+            // }
+
+            // 切换一个类：有则删除，没有则添加
+            function toggleclass(obj,cn) {
+                if(hasclass(obj,cn)){
+                    obj.className = obj.className.replace(obj,"");
+                }else{
+                    obj.className = obj.className +" "+ cn;
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <button id="btn1">点击按钮修改box1的样式</button>
+    <br><br>
+    <div id="box1" class="b1"></div>
+</body>
+</html>

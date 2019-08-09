@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>全选</title>
+    <script type="text/javascript">
+        window.onload = function () {
+        //    点击全选按钮，爱好被全部选中
+            var checkedallbtn = document.getElementById("checkedallbtn");
+            var items = document.getElementsByName("items");
+            checkedallbtn.onclick = function () {
+                for(var i=0; i< items.length; i++){
+                    items[i].checked = true;
+                }
+                checkallbox.checked = true;
+            };
+            var checknobtn = document.getElementById("checknobtn");
+            checknobtn.onclick = function () {
+                for(var i=0; i< items.length; i++){
+                    items[i].checked = false;
+                }
+                checkallbox.checked = false;
+            };
+            var checkrevbtn = document.getElementById("checkrevbtn");
+            checkrevbtn.onclick = function () {
+
+                for(var i=0; i< items.length; i++){
+                    items[i].checked = !items[i].checked;
+                    checkallbox.checked = true;
+                    for(var j=0; j< items.length; j++){
+                        if(!items[j].checked) {
+                            checkallbox.checked = false;
+                        }
+                    }
+                }
+                // checkallbox.checked = !checkallbox.checked;
+            };
+            var sendbtn = document.getElementById("sendbtn");
+            sendbtn.onclick = function () {
+                for(var i = 0; i < items.length; i++){
+                    if(items[i].checked){
+                        alert(items[i].value);
+                    }
+                }
+            };
+            var checkallbox = document.getElementById("checkallbox");
+            checkallbox.onclick = function () {
+                // 法 1：
+                // if(checkallbox.checked){
+                //     for(var i=0; i< items.length; i++){
+                //         items[i].checked = true;
+                //     }
+                // }else{
+                //     for(var i=0; i< items.length; i++){
+                //         items[i].checked = false;
+                //     }
+                // }
+                /*
+                    法 2：
+                    for(var i=0; i< items.length; i++){
+                        items[i].checked = checkallbox.checked;
+                    }
+
+                 */
+                // 法 3：在事件的响应函数中，this指相应的响应事件
+                for(var i =0; i< items.length; i++){
+                    items[i].checked = this.checked;
+                }
+                for(var i =0; i< items.length; i++){
+                    items[i].onclick = function () {
+                        checkallbox.checked = true;
+                        for(var j=0; j< items.length; j++){
+                           if(!items[j].checked) {
+                               checkallbox.checked = false;
+                               break;
+                           }
+                        }
+                    };
+                }
+            };
+        };
+    </script>
+</head>
+<body>
+    <form method="post">
+        你爱好的运动是?<input type="checkbox" id="checkallbox" />全选/全不选
+        <br/>
+        <input type="checkbox" name="items" value="足球"/>足球
+        <input type="checkbox" name="items" value="篮球"/>篮球
+        <input type="checkbox" name="items" value="羽毛球"/>羽毛球
+        <input type="checkbox" name="items" value="乒乓球"/>乒乓球
+        <br/>
+        <input type="button" id="checkedallbtn" value="全选"/>
+        <input type="button" id="checknobtn" value="全不选"/>
+        <input type="button" id="checkrevbtn" value="反选"/>
+        <input type="button" id="sendbtn" value="提交"/>
+    </form>
+</body>
+</html>
